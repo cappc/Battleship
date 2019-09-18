@@ -12,13 +12,8 @@
 #include "stdlib.h"
 #include "time.h"
 #include "functions.cpp"
-
-
 int main() {
-	
-	
 	srand(time(NULL));
-
 	carrier.shipPositionPlacement();
 	battleship.shipPositionPlacement();
 	cruiser.shipPositionPlacement();
@@ -27,9 +22,6 @@ int main() {
 
 	cout << "Welcome to Battleship!" << endl;
 	cout << "Enemy ship positions have been set. Fire Away!" << endl;
-
-	
-	
 	
 	blankBoardDisplay();
 	shotAttempt();
@@ -62,8 +54,6 @@ public:
 	Ship() {};
 	~Ship() {};
 };
-
-
 
 class Carrier : virtual public Ship{
 public:
@@ -116,25 +106,17 @@ using namespace std;
 
 const int ROWS = 12;
 const int COLUMNS = 12;
-
 int battleshipHitCount = 0;
-
 char blankBoard[ROWS][COLUMNS];
 char board[ROWS][COLUMNS];
 char row;
 char col;
-
 char rowLabel2 = 47;								//Sets blank grid row labels on program start
 char colLabel2 = 64;								//Sets blank grid column labels on program start
-
 bool endGame = false;
-
 char shotAttempt();
-
 void Ship::shipPositionPlacement() {				//Function to set random ship placements
-
 	int orientation = rand() % 2;
-
 	int a = 0;
 	int b = 0;
 	int x = rand() % 9 + 65;
@@ -161,15 +143,11 @@ void Ship::shipPositionPlacement() {				//Function to set random ship placements
 		}
 	}
 }
-
 Carrier carrier;									//Creates classes for each ship
 Battleship battleship;
 Cruiser cruiser;
 Submarine submarine;
 Destroyer destroyer;
-
-
-
 bool checkHit(char x, char y, const Ship &s) {		//Checks the coordinates of the ship versus the user input
 	char shotRow = x;
 	char shotCol = y;
@@ -181,23 +159,15 @@ bool checkHit(char x, char y, const Ship &s) {		//Checks the coordinates of the 
 	}
 	return false;
 }
-
-
-
-
 void gameDisplay(char x = ' ', char y = ' ') {		//Displays edited game board
 	int i = 1;
 	int j = 1;
-
 	char rowLabel = 47;
 	char colLabel = 64;
-
 	char row = x;
 	char col = y;
-
 	char hit = 'X';
 	char miss = '~';
-
 	bool carrierHit = checkHit(row, col, carrier);	//Checks for hits on ships
 	bool battleshipHit = checkHit(row, col, battleship);
 	bool cruiserHit = checkHit(row, col, cruiser);
@@ -208,7 +178,6 @@ void gameDisplay(char x = ' ', char y = ' ') {		//Displays edited game board
 	{
 		for (j = 1; j < COLUMNS; ++j)
 		{
-			
 			if (carrierHit == true) {
 				board[x - 63][y - 46] = hit;
 				carrier.status = "Hit!";
@@ -245,11 +214,9 @@ void gameDisplay(char x = ' ', char y = ' ') {		//Displays edited game board
 				if (colLabel == '@')
 					board[i][j] = ' ';
 				colLabel = colLabel + 1;
-			}	
-			
+			}			
 		cout << board[i][j] << "  ";
-		}
-			
+		}		
 	cout << endl;
 	}
 	if (battleshipHit == true) {					//Increments counter if the battleship is hit. Once counter reaches 4 hits, the battleship is sunk and the game ends.
@@ -259,9 +226,6 @@ void gameDisplay(char x = ' ', char y = ' ') {		//Displays edited game board
 	}
 	shotAttempt();
 }
-
-
-
 char shotAttempt() {
 	const string errorMessage = "Numbers out of bounds. Please input 0-9.";
 	ofstream fout("battleship_user_input.txt", ios_base::app);	
@@ -289,10 +253,7 @@ char shotAttempt() {
 	cout << endl;
 	fout.close();
 	return row, col;
-	
 }
-
-
 void blankBoardDisplay() {							//Displays initial blank game board.
 	for (int a = 1; a < ROWS; ++a){
 		for (int b = 1; b < COLUMNS; ++b){
@@ -316,10 +277,6 @@ void blankBoardDisplay() {							//Displays initial blank game board.
 		cout << endl;
 	}
 }
-
-
-
-
 ostream& operator<<(ostream &os, const Ship &s) {	//Overloaded extraction operator.
 	cout << "The " << s.name << " has been " << s.status << " Game over" << endl;
 	return os;

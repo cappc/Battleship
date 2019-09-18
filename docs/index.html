@@ -4,35 +4,6 @@
 <h1>Class Project Battleship Program</h1>
 <p>Battleship program created for Embry-Riddle Aeronautical University CS225 course. Created by Casey Capp and Laura Lucas.</p>
 <br>
-<h2>Gameboard.cpp Code</h2>
-<pre>
-#include "iostream"
-#include "string" 
-#include "math.h"
-#include "stdlib.h"
-#include "time.h"
-#include "functions.cpp"
-int main() {
-	srand(time(NULL));
-	carrier.shipPositionPlacement();
-	battleship.shipPositionPlacement();
-	cruiser.shipPositionPlacement();
-	submarine.shipPositionPlacement();
-	destroyer.shipPositionPlacement();
-
-	cout << "Welcome to Battleship!" << endl;
-	cout << "Enemy ship positions have been set. Fire Away!" << endl;
-	
-	blankBoardDisplay();
-	shotAttempt();
-	while (!endGame == true) {
-		gameDisplay(row, col);
-	}
-
-	return 0;
-}
-</pre>
-
 <h2>Classes.h Code</h2>
 <pre>
 #pragma once
@@ -90,6 +61,35 @@ public:
 	char shipCol[2];
 	Destroyer() { this->name = "Destroyer"; this->size = 2; };
 };
+</pre>
+<br>
+<h2>Gameboard.cpp Code</h2>
+<pre>
+#include "iostream"
+#include "string" 
+#include "math.h"
+#include "stdlib.h"
+#include "time.h"
+#include "functions.cpp"
+int main() {
+	srand(time(NULL));
+	carrier.shipPositionPlacement();
+	battleship.shipPositionPlacement();
+	cruiser.shipPositionPlacement();
+	submarine.shipPositionPlacement();
+	destroyer.shipPositionPlacement();
+
+	cout << "Welcome to Battleship!" << endl;
+	cout << "Enemy ship positions have been set. Fire Away!" << endl;
+	
+	blankBoardDisplay();
+	shotAttempt();
+	while (!endGame == true) {
+		gameDisplay(row, col);
+	}
+
+	return 0;
+}
 </pre>
 <br>
 <h2>Functions.cpp Code</h2>
